@@ -9,21 +9,23 @@ import {
 import { AuthProvider } from "./context/AuthContext";
 import "./index.css";
 import LoginPage from "./pages/LoginPage";
+import ServersPage from "./pages/ServersPage";
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
-    <AuthProvider>
-      <QueryClientProvider client={queryClient}>
-        <Router>
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <AuthProvider>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/servers" element={<ServersPage />} />
             <Route path="*" element={<Navigate to="/login" />} />
           </Routes>
-        </Router>
-      </QueryClientProvider>
-    </AuthProvider>
+        </AuthProvider>
+      </Router>
+    </QueryClientProvider>
   );
 }
 
