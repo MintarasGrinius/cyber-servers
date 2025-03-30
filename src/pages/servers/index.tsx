@@ -1,5 +1,6 @@
 // src/pages/ServersPage.tsx
 import { Button } from "@/components/ui/button";
+import { isObjectWithMessage } from "@/lib/utils";
 import { useServers } from "@/services/servers/fetchServers";
 import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
@@ -13,8 +14,17 @@ const ServersPage = () => {
     setSortBy(criterion);
   };
 
+  // TODO: Add skeleton
   if (isLoading) return <div>Loading...</div>;
-  if (error instanceof Error) return <div>Error: {error.message}</div>;
+
+  // TODO: Add error handling
+  if (error) {
+    if (isObjectWithMessage(error)) {
+      return <div>Error: {error.message}</div>;
+    } else {
+      return <div>Error fetching servers</div>;
+    }
+  }
 
   const sortedServers = [...(data || [])].sort((a, b) => {
     if (sortBy === "name") {

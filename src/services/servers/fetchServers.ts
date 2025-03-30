@@ -8,20 +8,28 @@ const fetchServers = async (token: string | null) => {
       Authorization: `Bearer ${token}`,
     },
   });
+
   if (!response.ok) {
     throw new Error("Failed to fetch servers");
   }
+
   return response.json();
 };
 
 export const useServers = () => {
   const { token } = useAuth();
 
-  const { data, error, isLoading } = useQuery<Server[], Error>({
+  const query = useQuery<Server[], Error>({
     queryKey: ["servers", token],
     queryFn: () => fetchServers(token),
     enabled: !!token,
   });
 
-  return { data, error, isLoading };
+  if (query.error) {
+    // TODO: Sentry or any other error tracking service can be used here
+    console.error("Error fetching servers:", query.error);
+    // TODO: Toast or notification can be shown to the user
+  }
+
+  return query;
 };
