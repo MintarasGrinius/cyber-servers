@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import "./index.css";
-import LoginPage from "./pages/LoginPage";
+import LoginPage from "./pages/login/LoginPage";
 import ServersPage from "./pages/ServersPage";
 
 const queryClient = new QueryClient();

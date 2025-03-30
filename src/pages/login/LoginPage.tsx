@@ -9,18 +9,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { isObjectWithMessage } from "@/lib/utils";
+import { loginRequest } from "@/services/auth/login";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { useAuth } from "../context/AuthContext";
-
-const loginSchema = z.object({
-  username: z.string().min(1, "Username is required"),
-  password: z.string().min(1, "Password is required"),
-});
-
-type LoginFormInputs = z.infer<typeof loginSchema>;
+import { useAuth } from "../../context/AuthContext";
+import { LoginFormInputs, loginSchema } from "./validations";
 
 const LoginPage = () => {
   const { login } = useAuth();
@@ -37,24 +31,14 @@ const LoginPage = () => {
 
   const handleLogin = async (data: LoginFormInputs) => {
     try {
-      const response = await fetch("https://playground.tesonet.lt/v1/tokens", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const { token } = await loginRequest(data);
 
-      if (!response.ok) {
-        throw new Error("Invalid credentials");
-      }
-
-      const responseData = await response.json();
-      login(responseData.token);
+      login(token);
     } catch (error: unknown) {
       if (isObjectWithMessage(error)) {
         setServerError(error.message);
       } else {
+        // TODO: Sentry or other error tracking
         console.error(error);
         setServerError("An unexpected error occurred");
       }
