@@ -8,8 +8,8 @@ import {
 } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import "./index.css";
-import LoginPage from "./pages/login/LoginPage";
-import ServersPage from "./pages/ServersPage";
+import LoginPage from "./pages/login";
+import ServersPage from "./pages/servers";
 
 const queryClient = new QueryClient();
 

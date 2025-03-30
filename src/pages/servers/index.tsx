@@ -1,35 +1,13 @@
 // src/pages/ServersPage.tsx
 import { Button } from "@/components/ui/button";
-import { useQuery } from "@tanstack/react-query";
+import { useServers } from "@/services/servers/fetchServers";
 import { useState } from "react";
-import { useAuth } from "../context/AuthContext";
-
-interface Server {
-  id: string;
-  name: string;
-  distance: number;
-}
-
-const fetchServers = async (token: string) => {
-  const response = await fetch("https://playground.tesonet.lt/v1/servers", {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  if (!response.ok) {
-    throw new Error("Failed to fetch servers");
-  }
-  return response.json();
-};
+import { useAuth } from "../../context/AuthContext";
 
 const ServersPage = () => {
-  const { token, logout } = useAuth();
+  const { logout } = useAuth();
   const [sortBy, setSortBy] = useState<"name" | "distance">("name");
-  const { data, error, isLoading } = useQuery<Server[], Error>({
-    queryKey: ["servers", token],
-    queryFn: () => fetchServers(token!),
-    enabled: !!token,
-  });
+  const { data, error, isLoading } = useServers();
 
   const handleSort = (criterion: "name" | "distance") => {
     setSortBy(criterion);
