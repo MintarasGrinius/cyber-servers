@@ -1,3 +1,4 @@
+import illustration from "@/assets/illustration.svg";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -54,8 +55,16 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen min-w-screen bg-background">
-      <Card className="max-w-md w-full">
+    <div className="flex items-center justify-center min-h-screen min-w-screen bg-background">
+      <img
+        src={illustration}
+        alt="Login Background"
+        className="w-full h-full object-fill opacity-20 absolute top-0 left-0"
+      />
+      <Card
+        className="max-w-md w-full backdrop-blur-sm"
+        variant="no-background"
+      >
         <CardHeader>
           <CardTitle>Welcome Back</CardTitle>
           <CardDescription>Login to continue to your account</CardDescription>

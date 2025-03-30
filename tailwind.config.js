@@ -2,11 +2,13 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {
-      colors: {
-        destructive: "var(--bg-destructive)", // Use the variable
-      },
-    },
+    extend: {},
   },
-  plugins: [],
+  plugins: [
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/aspect-ratio"),
+    require("@tailwindcss/line-clamp"),
+    require("tailwindcss-filters"),
+  ],
 };
