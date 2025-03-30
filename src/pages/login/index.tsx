@@ -1,5 +1,13 @@
 import { Button } from "@/components/ui/button";
 import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
   Form,
   FormControl,
   FormField,
@@ -46,51 +54,55 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen min-w-screen">
-      <div className="max-w-md w-full space-y-4">
-        <h2 className="text-2xl font-semibold">Login</h2>
+    <div className="flex flex-col items-center justify-center min-h-screen min-w-screen bg-background">
+      <Card className="max-w-md w-full">
+        <CardHeader>
+          <CardTitle>Welcome Back</CardTitle>
+          <CardDescription>Login to continue to your account</CardDescription>
+        </CardHeader>
         <Form {...form}>
           <form onSubmit={handleSubmit(handleLogin)} className="space-y-4">
-            <FormField
-              control={control}
-              name="username"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Username</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Your username" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="password"
-                      placeholder="Your password"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            {serverError && <div className="text-red-500">{serverError}</div>}
-            <Button
-              type="submit"
-              className="w-full p-2 bg-blue-500 text-white rounded"
-            >
-              Login
-            </Button>
+            <CardContent className="space-y-4">
+              <FormField
+                control={control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Username</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Your username" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="Your password"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              {serverError && <div className="text-red-500">{serverError}</div>}
+            </CardContent>
+            <CardFooter>
+              <Button type="submit" className="w-full">
+                Login
+              </Button>
+            </CardFooter>
           </form>
         </Form>
-      </div>
+      </Card>
     </div>
   );
 };

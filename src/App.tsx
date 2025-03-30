@@ -7,7 +7,6 @@ import {
   Routes,
 } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
-import "./index.css";
 import LoginPage from "./pages/login";
 import ServersPage from "./pages/servers";
 
