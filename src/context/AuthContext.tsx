@@ -1,6 +1,4 @@
 // src/context/AuthContext.tsx
-import { Button } from "@/components/ui/button";
-import { LogOut } from "lucide-react";
 import {
   createContext,
   ReactNode,
@@ -11,6 +9,7 @@ import {
 import { redirect, useNavigate } from "react-router-dom";
 
 interface AuthContextType {
+  loggedIn: boolean;
   token: string | null;
   login: (token: string) => void;
   logout: () => void;
@@ -39,7 +38,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   );
 
   useEffect(() => {
-    // TODO: temp
     if (token) {
       navigate("/servers");
     } else {
@@ -61,13 +59,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   return (
-    <AuthContext.Provider value={{ token, login, logout }}>
+    <AuthContext.Provider value={{ token, login, logout, loggedIn: !!token }}>
       {children}
-      {!!token && (
-        <Button size="icon" className="fixed top-2 right-2" onClick={logout}>
-          <LogOut />
-        </Button>
-      )}
     </AuthContext.Provider>
   );
 };
