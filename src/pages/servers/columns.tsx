@@ -25,6 +25,7 @@ export const columns: ColumnDef<Server>[] = [
   },
   {
     accessorKey: "distance",
+    filterFn: "inNumberRange",
     header: ({ column }) => {
       return (
         <div className="flex items-center justify-between">
