@@ -31,5 +31,5 @@ export const useServers = () => {
     // TODO: Toast or notification can be shown to the user
   }
 
-  return query;
+  return { ...query, data: query.data ?? [] };
 };

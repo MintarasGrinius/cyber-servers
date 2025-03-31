@@ -3,6 +3,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+* {
+  border-color: var(--border);
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   color-scheme: light dark;
@@ -40,7 +44,7 @@
   --border: hsl(209 30% 50%);
   --input: hsl(209 30% 42%);
   --ring: hsl(209 100% 19%);
-  --radius: 1rem;
+  --radius: 0.5rem;
 }
 
 .dark {
@@ -77,7 +81,7 @@
   --border: hsl(209 30% 42%);
   --input: hsl(209 30% 42%);
   --ring: hsl(209 100% 19%);
-  --radius: 1rem;
+  --radius: 0.5rem;
 }
 
 @theme inline {
