@@ -1,4 +1,6 @@
 // src/context/AuthContext.tsx
+import { Button } from "@/components/ui/button";
+import { LogOut } from "lucide-react";
 import {
   createContext,
   ReactNode,
@@ -61,6 +63,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   return (
     <AuthContext.Provider value={{ token, login, logout }}>
       {children}
+      {!!token && (
+        <Button size="icon" className="fixed top-2 right-2" onClick={logout}>
+          <LogOut />
+        </Button>
+      )}
     </AuthContext.Provider>
   );
 };
