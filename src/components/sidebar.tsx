@@ -25,11 +25,11 @@ const Sidebar = () => {
       </Button>
 
       {/* Sidebar */}
-      <div className="w-0 md:w-64 bg-sidebar">
-        <div className="w-64 fixed h-screen z-40">
+      <div className="w-0 md:w-40 bg-sidebar">
+        <div className="w-40 fixed h-screen z-40">
           <div
             className={cn(
-              "space-y-4 flex flex-col top-0 left-0 h-screen w-64 bg-sidebar p-5 shadow-lg transform transition-transform duration-300 z-40 md:translate-x-0 md:relative",
+              "space-y-4 flex flex-col top-0 left-0 h-screen w-40 bg-sidebar p-5 shadow-lg transform transition-transform duration-300 z-40 md:translate-x-0 md:relative",
               {
                 "translate-x-0": isOpen,
                 "-translate-x-full": !isOpen,
@@ -47,16 +47,24 @@ const Sidebar = () => {
 
             <nav className="flex-1 flex flex-col justify-between h-full">
               <div className="space-y-2">
-                <Button asChild className="w-full" variant="secondary">
+                <Button
+                  asChild
+                  className="w-full justify-start"
+                  variant="secondary"
+                >
                   <Link to="/dashboard">Home</Link>
                 </Button>
-                <Button asChild className="w-full" variant="secondary">
+                <Button
+                  asChild
+                  className="w-full justify-start"
+                  variant="secondary"
+                >
                   <Link to="/servers">Servers</Link>
                 </Button>
               </div>
 
               <Button
-                className="w-full"
+                className="w-full justify-start"
                 variant="destructive-outline"
                 onClick={logout}
               >
