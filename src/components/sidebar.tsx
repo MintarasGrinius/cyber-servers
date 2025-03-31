@@ -1,33 +1,80 @@
+import server from "@/assets/server.svg";
 import { useAuth } from "@/context/AuthContext";
+import { cn } from "@/lib/utils";
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
+import { Heading } from "./ui/Typography";
 
 const Sidebar = () => {
   const { logout } = useAuth();
-  return (
-    <div className="w-48 h-screen relative">
-      <div className="h-full fixed p-5 bg-card flex flex-col w-48">
-        <h2 className="text-2xl font-bold mb-5">Dashboard</h2>
+  const [isOpen, setIsOpen] = useState(false);
 
-        <nav className="flex-1 flex flex-col justify-between h-auto">
-          <div className="space-y-2">
-            <Button asChild className="w-full" variant="secondary">
-              <Link to="/dashboard">Home</Link>
-            </Button>
-            <Button asChild className="w-full" variant="secondary">
-              <Link to="/servers">Servers</Link>
-            </Button>
-          </div>
-          <Button
-            className="w-full"
-            variant="destructive-outline"
-            onClick={logout}
+  const toggleSidebar = () => setIsOpen(!isOpen);
+
+  return (
+    <>
+      {/* Mobile Menu Button */}
+      <Button
+        className="fixed top-4 left-4 z-50 md:hidden"
+        variant="secondary"
+        onClick={toggleSidebar}
+      >
+        {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+      </Button>
+
+      {/* Sidebar */}
+      <div className="w-0 md:w-64 bg-sidebar">
+        <div className="w-64 fixed h-screen z-40">
+          <div
+            className={cn(
+              "space-y-4 flex flex-col top-0 left-0 h-screen w-64 bg-sidebar p-5 shadow-lg transform transition-transform duration-300 z-40 md:translate-x-0 md:relative",
+              {
+                "translate-x-0": isOpen,
+                "-translate-x-full": !isOpen,
+              }
+            )}
           >
-            Logout
-          </Button>
-        </nav>
+            <img
+              src={server}
+              alt="Login Background"
+              className="w-full h-auto"
+            />
+            <Heading.H2 className="text-foreground mx-auto">
+              CyberServ
+            </Heading.H2>
+
+            <nav className="flex-1 flex flex-col justify-between h-full">
+              <div className="space-y-2">
+                <Button asChild className="w-full" variant="secondary">
+                  <Link to="/dashboard">Home</Link>
+                </Button>
+                <Button asChild className="w-full" variant="secondary">
+                  <Link to="/servers">Servers</Link>
+                </Button>
+              </div>
+
+              <Button
+                className="w-full"
+                variant="destructive-outline"
+                onClick={logout}
+              >
+                Logout
+              </Button>
+            </nav>
+          </div>
+        </div>
       </div>
-    </div>
+
+      {/* Overlay for Mobile */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-30 md:hidden"
+          onClick={toggleSidebar}
+        ></div>
+      )}
+    </>
   );
 };
 
