@@ -45,8 +45,8 @@ const ServersTableFilters = ({
     : undefined;
 
   return (
-    <div className="flex items-center gap-4">
-      <div className="flex items-center gap-2">
+    <div className="flex md:flex-nowrap flex-wrap items-center gap-4">
+      <div className="flex-1 flex items-center gap-2 min-w-[300px]">
         <Input
           placeholder="Filter distance from..."
           value={distanceFilterSecureValue?.[0] ?? ""}
@@ -77,14 +77,16 @@ const ServersTableFilters = ({
           className="max-w-sm"
         />
       </div>
-      <Input
-        placeholder="Filter names..."
-        value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-        onChange={(event) =>
-          table.getColumn("name")?.setFilterValue(event.target.value)
-        }
-        className="max-w-sm"
-      />
+      <div className="flex-1 min-w-[300px] relative">
+        <Input
+          placeholder="Filter names..."
+          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("name")?.setFilterValue(event.target.value)
+          }
+          className="w-full"
+        />
+      </div>
     </div>
   );
 };

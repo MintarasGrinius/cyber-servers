@@ -1,4 +1,5 @@
 // src/pages/ServersPage.tsx
+import { DataTable } from "@/components/data-table";
 import { isObjectWithMessage } from "@/lib/utils";
 import { useServers } from "@/services/servers/fetchServers";
 import {
@@ -10,9 +11,9 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { useState } from "react";
-import { DataTable } from "../../components/data-table";
 import { columns } from "./columns";
 import ServersTableFilters from "./ServersTableFilters";
+import ServersTableSkeleton from "./ServersTableSkeleton";
 
 const ServersTable = () => {
   const { data, error, isLoading } = useServers();
@@ -34,7 +35,7 @@ const ServersTable = () => {
   });
 
   // TODO: Add skeleton
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <ServersTableSkeleton />;
 
   // TODO: Add error handling
   if (error) {

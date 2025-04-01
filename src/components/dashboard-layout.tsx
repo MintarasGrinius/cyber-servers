@@ -8,7 +8,7 @@ interface DashboardLayoutProps {
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const { loggedIn } = useAuth();
-  console.info("🚀 ~ loggedIn:", loggedIn);
+
   return (
     <div className="flex">
       {loggedIn && <Sidebar />}
