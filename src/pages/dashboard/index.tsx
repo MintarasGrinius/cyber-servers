@@ -1,5 +1,5 @@
 // src/pages/ServersPage.tsx
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { Heading, Paragraph } from "@/components/ui/Typography";
 import { Link } from "react-router-dom";
 

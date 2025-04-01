@@ -6,7 +6,7 @@ import {
   BrowserRouter as Router,
   Routes,
 } from "react-router-dom";
-import DashboardLayout from "./components/dashboard-layout";
+import DashboardLayout from "./components/DashboardLayout";
 import { AuthProvider } from "./context/AuthContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import DashboardPage from "./pages/dashboard";

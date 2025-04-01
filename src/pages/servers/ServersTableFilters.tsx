@@ -1,5 +1,5 @@
 // src/pages/ServersPage.tsx
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/Input";
 import { Server } from "@/lib/types";
 import {
   ColumnFiltersState,

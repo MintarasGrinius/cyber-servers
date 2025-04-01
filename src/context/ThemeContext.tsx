@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { ModeToggle } from "../components/mode-toggle";
+import { ModeToggle } from "../components/ModeToggle";
 
 type Theme = "dark" | "light" | "system";
 

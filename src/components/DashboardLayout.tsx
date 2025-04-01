@@ -1,6 +1,6 @@
 import { useAuth } from "@/context/AuthContext";
 import { ReactNode } from "react";
-import Sidebar from "../components/sidebar";
+import Sidebar from "./Sidebar";
 
 interface DashboardLayoutProps {
   children: ReactNode;

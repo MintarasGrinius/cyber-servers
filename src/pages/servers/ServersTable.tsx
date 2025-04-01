@@ -1,5 +1,5 @@
 // src/pages/ServersPage.tsx
-import { DataTable } from "@/components/data-table";
+import { DataTable } from "@/components/DataTable";
 import ServerError from "@/components/ServerError";
 import { isObjectWithMessage } from "@/lib/utils";
 import { useServers } from "@/services/servers/fetchServers";

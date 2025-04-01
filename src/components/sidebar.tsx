@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "./ui/button";
+import { Button } from "./ui/Button";
 import { Heading } from "./ui/Typography";
 
 const Sidebar = () => {
