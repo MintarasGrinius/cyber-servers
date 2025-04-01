@@ -59,7 +59,7 @@ const ServersTableFilters = ({
                 distanceFilterSecureValue?.[1] ?? 0,
               ])
           }
-          className="max-w-sm"
+          className="flex-1"
         />
         to
         <Input
@@ -74,7 +74,7 @@ const ServersTableFilters = ({
                 event.target.valueAsNumber ?? 0,
               ])
           }
-          className="max-w-sm"
+          className="flex-1"
         />
       </div>
       <div className="flex-1 min-w-[300px] relative">
