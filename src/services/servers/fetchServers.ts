@@ -28,7 +28,6 @@ export const useServers = () => {
   if (query.error) {
     // TODO: Sentry or any other error tracking service can be used here
     console.error("Error fetching servers:", query.error);
-    // TODO: Toast or notification can be shown to the user
   }
 
   return { ...query, data: query.data ?? [] };

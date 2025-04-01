@@ -1,5 +1,6 @@
 // src/pages/ServersPage.tsx
 import { DataTable } from "@/components/data-table";
+import ServerError from "@/components/ServerError";
 import { isObjectWithMessage } from "@/lib/utils";
 import { useServers } from "@/services/servers/fetchServers";
 import {
@@ -34,16 +35,14 @@ const ServersTable = () => {
     },
   });
 
-  // TODO: Add skeleton
   if (isLoading) return <ServersTableSkeleton />;
 
-  // TODO: Add error handling
   if (error) {
-    if (isObjectWithMessage(error)) {
-      return <div>Error: {error.message}</div>;
-    } else {
-      return <div>Error fetching servers</div>;
-    }
+    return (
+      <ServerError
+        message={isObjectWithMessage(error) ? error.message : undefined}
+      />
+    );
   }
 
   return (
