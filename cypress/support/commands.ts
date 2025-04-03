@@ -8,7 +8,7 @@ Cypress.Commands.add("login", () => {
     },
   }).as("login");
   cy.visit("/login");
-  cy.contains("Username").type(Cypress.env("VALID_EMAIL"));
-  cy.contains("Password").type(Cypress.env("VALID_PASSWORD"));
+  cy.contains("Username").type("VALID_EMAIL");
+  cy.contains("Password").type("VALID_PASSWORD");
   cy.get("button[type='submit']").click();
 });
