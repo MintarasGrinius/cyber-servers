@@ -27,6 +27,7 @@ export const useServers = () => {
     queryKey: ["servers"],
     queryFn: () => fetchServers(token),
     enabled: !!token,
+    retry: false,
   });
 
   if (query.error) {

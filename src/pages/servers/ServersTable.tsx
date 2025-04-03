@@ -13,6 +13,7 @@ import {
 } from "@tanstack/react-table";
 import { useState } from "react";
 import { columns } from "./columns";
+import NoServersAvailable from "./NoServersAvailable";
 import ServersTableFilters from "./ServersTableFilters";
 import ServersTableSkeleton from "./ServersTableSkeleton";
 
@@ -43,6 +44,10 @@ const ServersTable = () => {
         message={isObjectWithMessage(error) ? error.message : undefined}
       />
     );
+  }
+
+  if (!data || !data.length) {
+    return <NoServersAvailable />;
   }
 
   return (

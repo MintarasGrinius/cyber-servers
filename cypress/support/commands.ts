@@ -1,8 +1,6 @@
 /// <reference types="cypress" />
 
 Cypress.Commands.add("login", () => {
-  // (fetch)POST https://playground.tesonet.lt/v1/tokens
-
   cy.intercept("POST", "https://playground.tesonet.lt/v1/tokens", {
     statusCode: 200,
     body: {
