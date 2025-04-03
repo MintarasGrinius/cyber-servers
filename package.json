@@ -13,7 +13,8 @@
     "test": "vitest",
     "test:e2e": "vite dev & cypress run && pkill -f vite",
     "test:e2e:headed": "cypress open",
-    "test:e2e:ci": "vite dev & cypress run --browser chrome && pkill -f vite"
+    "test:e2e:ci": "vite dev & cypress run --browser chrome && pkill -f vite",
+    "clean": "rimraf dist .storybook-static && rimraf node_modules dist .vite && npm cache clean --force"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",
@@ -67,6 +68,7 @@
     "msw": "^2.7.3",
     "playwright": "^1.51.1",
     "postcss": "^8.5.3",
+    "rimraf": "^6.0.1",
     "storybook": "^8.6.11",
     "tailwindcss": "^4.0.17",
     "typescript": "~5.7.2",
