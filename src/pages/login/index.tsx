@@ -31,10 +31,6 @@ const LoginPage = () => {
 
   const form = useForm<LoginFormInputs>({
     resolver: zodResolver(loginSchema),
-    defaultValues: {
-      username: "tesonet",
-      password: "partyanimal",
-    },
   });
   const { control, handleSubmit } = form;
 

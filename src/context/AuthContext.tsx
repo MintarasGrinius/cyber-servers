@@ -6,7 +6,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface AuthContextType {
   loggedIn: boolean;
@@ -17,7 +17,6 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
@@ -33,29 +32,35 @@ interface AuthProviderProps {
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const navigate = useNavigate();
 
-  const [token, setToken] = useState<string | null>(
-    localStorage.getItem("token")
-  );
+  const [token, setToken] = useState<string | null>(() => {
+    return localStorage.getItem("token") || null;
+  });
 
   useEffect(() => {
-    if (token) {
-      navigate("/servers");
+    if (!token) {
+      localStorage.removeItem("token");
+
+      if (window.location.pathname !== "/login") {
+        navigate("/login");
+      }
     } else {
-      navigate("/login");
+      localStorage.setItem("token", token);
+
+      if (window.location.pathname === "/login") {
+        navigate("/dashboard");
+      }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   const login = (token: string) => {
-    localStorage.setItem("token", token);
     setToken(token);
-    navigate("/servers");
+    navigate("/dashboard");
   };
 
   const logout = () => {
     localStorage.removeItem("token");
     setToken(null);
-    redirect("/login");
+    navigate("/login");
   };
 
   return (

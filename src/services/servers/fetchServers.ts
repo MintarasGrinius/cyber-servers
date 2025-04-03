@@ -3,6 +3,10 @@ import { Server } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
 
 const fetchServers = async (token: string | null) => {
+  if (!token) {
+    throw new Error("No token provided");
+  }
+
   const response = await fetch("https://playground.tesonet.lt/v1/servers", {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -20,7 +24,7 @@ export const useServers = () => {
   const { token } = useAuth();
 
   const query = useQuery<Server[], Error>({
-    queryKey: ["servers", token],
+    queryKey: ["servers"],
     queryFn: () => fetchServers(token),
     enabled: !!token,
   });
