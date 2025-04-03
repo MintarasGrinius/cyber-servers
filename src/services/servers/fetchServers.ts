@@ -1,31 +1,15 @@
 import { useAuth } from "@/context/AuthContext";
+import { fetchWithAuth } from "@/lib/fetchWrapper";
 import { Server } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
-
-const fetchServers = async (token: string | null) => {
-  if (!token) {
-    throw new Error("No token provided");
-  }
-
-  const response = await fetch("https://playground.tesonet.lt/v1/servers", {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch servers");
-  }
-
-  return response.json();
-};
 
 export const useServers = () => {
   const { token } = useAuth();
 
   const query = useQuery<Server[], Error>({
     queryKey: ["servers"],
-    queryFn: () => fetchServers(token),
+    queryFn: async () =>
+      await fetchWithAuth("https://playground.tesonet.lt/v1/servers"),
     enabled: !!token,
     retry: false,
   });
