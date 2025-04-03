@@ -10,7 +10,10 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test": "vitest"
+    "test": "vitest",
+    "test:e2e": "vite dev & cypress run && pkill -f vite",
+    "test:e2e:headed": "cypress open",
+    "test:e2e:ci": "vite dev & cypress run --browser chrome && pkill -f vite"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",
